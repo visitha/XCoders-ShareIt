@@ -11,3 +11,11 @@ div.row > div:nth-child(5) {
     border-right: 1px solid #ccc;
     border-left: 1px solid #ccc;
 }
+
+.navbar{
+	margin-bottom: 5px;
+}
+
+.navbar-form.navbar-right:last-child {
+	margin-right: 0px;
+}
