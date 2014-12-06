@@ -9,12 +9,9 @@
 			<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 			<property name="url" value="jdbc:mysql://localhost:3306/shareit" />
 			<property name="username" value="root" />
-			<property name="password" value="badde1988" />
+			<property name="password" value="root" />
 		</bean>
 	
-		<bean id="donatorDAO" class="com.shareit.dao.impl.DonatorDAOImpl">
-			<property name="dataSource" ref="dataSource" />
-		</bean>
 		
 		<bean id="shareCasesService" class="com.shareit.service.impl.ShareCasesServiceImpl">
 		</bean>
