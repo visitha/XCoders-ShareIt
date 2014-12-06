@@ -105,10 +105,7 @@ public class BaseController {
 			shareCaseList = this.shareCasesService
 					.getShareCasesByUserName(logginUser);
 			model.addObject("shareCasesList", shareCaseList);
-			
-//			if (!shareCaseList.isEmpty()) {
-//				System.out.println(shareCaseList.get(0).getCaseTitle());
-//			}
+		
 			model.addObject("username", userDetail.getUsername());
 
 		}
