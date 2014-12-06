@@ -1,0 +1,12 @@
+<!--
+ 	COPYRIGHT (c) 2014 Mayo Foundation for Medical Education and Research. This information is confidential and no part of it
+ 	may be transmitted in any form by electronic, mechanical, photocopying, or any other means to anyone outside Mayo
+ 	without the prior permission of its author and/or copyright holder. Inappropriate use or dissemination of this
+ 	information may result in disciplinary or other legal action.
+ -->
+
+<decorators defaultdir="/WEB-INF/jsp/decorators">
+    <decorator name="main" page="master.jsp">
+        <pattern>/*</pattern>
+    </decorator>
+</decorators>
