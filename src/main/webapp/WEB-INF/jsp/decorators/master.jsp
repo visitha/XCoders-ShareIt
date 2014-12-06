@@ -24,7 +24,7 @@
 	href="${ROOT}/resources/lib/bootstrap/less/bootstrap.css">
 <link rel="stylesheet"
 	href="${ROOT}/resources/lib/font-awesome/css/font-awesome.css">
-
+<link rel="stylesheet" href="${ROOT}/resources/lib/bootstrap/css/datepicker.css">
 <link rel="stylesheet" href="${ROOT}/resources/css/main.css">
 
 
@@ -32,6 +32,8 @@
 	src="${ROOT}/resources/lib/jQuery/js/jquery-1.10.1.min.js"></script>
 <script type="text/javascript"
 	src="${ROOT}/resources/lib/bootstrap/js/bootstrap.min.js"></script>
+	 <script type="text/javascript" src="${ROOT}/resources/lib/bootstrap/js/bootstrap-datepicker.js"></script>
+	 <script type="text/javascript" src="${ROOT}/resources/lib/bootstrap-select/js/bootstrap-select.js"></script>
 
 <script>
 	function formSubmit() {
@@ -110,7 +112,7 @@
 											<span class="caret"></span>
 										</a>
 										<ul class="dropdown-menu" role="menu">
-											<li><a href="#">Create Donation</a></li>
+											<li><a href="${ROOT}/getCreateCasePage">Create Donation</a></li>
 											<li class="divider"></li>
 											<li><a href="#">Search</a></li>
 										</ul>
@@ -147,10 +149,12 @@
 
 		</div>
 	</div>
-
-	<div id="body" class="container">
+	<div>
+		<div id="body" class="container">
 		<decorator:body />
+		</div>
 	</div>
+	
 
 </body>
 </html>

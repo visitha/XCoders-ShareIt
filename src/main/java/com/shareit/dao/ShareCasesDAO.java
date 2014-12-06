@@ -9,4 +9,6 @@ public interface ShareCasesDAO {
 	ShareCase getShareCasesByUserId(int userId);
 	
 	List<ShareCase> getShareCasesByUserName(String userName);
+	
+	void insertShareCase(ShareCase sharecase);
 }

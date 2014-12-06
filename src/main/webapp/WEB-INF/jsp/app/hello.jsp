@@ -4,7 +4,8 @@
 <body>
 	<h1>Title : ${title}</h1>
 	<h1>Message : ${message}</h1>
-
+	</br>
+	
 <div class="container">
 	<c:forEach items="${shareCasesList}" var="shareCase">
 	<div class="panel panel-default">

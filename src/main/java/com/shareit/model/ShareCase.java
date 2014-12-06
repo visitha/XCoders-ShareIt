@@ -3,13 +3,14 @@ package com.shareit.model;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+@SuppressWarnings("serial")
 public class ShareCase implements Serializable{
 
 	public int caseId;
 	public String caseTitle;
 	public int caseTypeId;
 	public String caseDiscription;
-	public Timestamp expireDate;
+	public String expireDate;
 	public int donatorId;
 	public int refugeeId; 	
 	
@@ -17,7 +18,7 @@ public class ShareCase implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public ShareCase(int caseId, String caseTitle, String caseDiscription, int caseTypeId, Timestamp expireDate, int refugeeId) {
+	public ShareCase(int caseId, String caseTitle, String caseDiscription, int caseTypeId, String expireDate, int refugeeId) {
 		this.caseId = caseId;
 		this.caseTitle = caseTitle;
 		this.caseDiscription = caseDiscription;
@@ -26,8 +27,8 @@ public class ShareCase implements Serializable{
 		this.refugeeId = refugeeId;
 	}
 
-	public  int getId() {
-		return caseId;
+	public int getId() {
+		return this.caseId;
 	}
 	
 	public void setId(int id) {
@@ -58,11 +59,11 @@ public class ShareCase implements Serializable{
 		this.caseDiscription = caseDiscription;
 	}
 
-	public Timestamp getExpireDate() {
+	public String getExpireDate() {
 		return expireDate;
 	}
 
-	public void setExpireDate(Timestamp expireDate) {
+	public void setExpireDate(String expireDate) {
 		this.expireDate = expireDate;
 	}
 

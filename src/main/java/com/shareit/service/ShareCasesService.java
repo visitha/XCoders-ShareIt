@@ -10,4 +10,6 @@ public interface ShareCasesService {
 	
 	List<ShareCase> getShareCasesByUserName(String userName);
 	
+	void insertShareCaseToDB(ShareCase shareCase);
+	
 }

@@ -40,7 +40,7 @@ public class ShareCasesDAOImpl implements ShareCasesDAO {
 						rs.getString("case_title"),
 						rs.getString("case_description"),
 						rs.getInt("case_type_id"),
-						rs.getTimestamp("expire_date"), rs.getInt("refugee_id"));
+						rs.getTimestamp("expire_date").toString(), rs.getInt("refugee_id"));
 			}
 			rs.close();
 			ps.close();
@@ -84,7 +84,7 @@ public class ShareCasesDAOImpl implements ShareCasesDAO {
 		         shareCase.setCaseTitle(rs.getString("case_title"));
 		         shareCase.setCaseTypeId(rs.getInt("case_type_id"));
 		         shareCase.setCaseDiscription(rs.getString("case_description"));
-		         shareCase.setExpireDate(rs.getTimestamp("expire_date"));
+		         shareCase.setExpireDate(rs.getTimestamp("expire_date").toString());
 		         shareCase.setRefugeeId(rs.getInt("refugee_id"));
 					
 		         shareCaseList.add(shareCase);
@@ -101,6 +101,35 @@ public class ShareCasesDAOImpl implements ShareCasesDAO {
 				}
 			}
 		}
+	}
+	
+	@Override
+	public void insertShareCase(ShareCase sharecase) {
+		String sql = "INSERT INTO share_cases " +
+				"(case_title, case_description, case_type_id) VALUES (?, ?, ?)";
+		Connection conn = null;
+ 
+		try {
+			conn = dataSource.getConnection();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, sharecase.getCaseTitle());
+			ps.setString(2, sharecase.getCaseDiscription());
+			ps.setInt(3, sharecase.getCaseTypeId());
+			ps.executeUpdate();
+			ps.close();
+ 
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+ 
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {}
+			}
+		}
+		
 	}
 
 }

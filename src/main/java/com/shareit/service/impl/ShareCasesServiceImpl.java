@@ -24,5 +24,11 @@ public class ShareCasesServiceImpl implements ShareCasesService{
 		List<ShareCase> sharecase = shareCasesDAO.getShareCasesByUserName(userName);
 		return sharecase;
 	}
+	
+	@Override
+	public void insertShareCaseToDB(ShareCase shareCase) {
+		shareCasesDAO.insertShareCase(shareCase);
+		
+	}
 
 }
