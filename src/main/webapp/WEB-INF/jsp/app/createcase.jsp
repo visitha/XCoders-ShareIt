@@ -54,7 +54,7 @@ $(document).ready(function () {
 					</tr>
 					<tr>
 						<div class="form-group">
-							<form:label path="expireDate">Birthday (mm/dd/yyyy) :   </form:label>
+							<form:label path="expireDate">Expire Date :   </form:label>
 							<form:input id ="expireDate" path="expireDate" />
 							<%-- <iTag:input path="expireDate" label="expireDate" placeholder="expireDataa" outerCssClass="date datepicker expireDate" inputWidthClass="col-xs-4" append="true" icon="icon-calendar" readonly="false" required="true"/> --%>
 						</div>
