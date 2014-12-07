@@ -15,4 +15,12 @@ public interface ShareCasesService {
 	
 	List<ShareCaseType> getAllShareCaseTypes();
 	
+	List<ShareCase> getAllRefugeeShareCases();
+	
+	List<ShareCase> getAllDonationShareCases();
+	
+	List<ShareCase> getAllSellShareCases();
+	
+	List<ShareCase> getAllBuyShareCases();
+	
 }

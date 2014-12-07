@@ -14,4 +14,6 @@ public interface ShareCasesDAO {
 	void insertShareCase(ShareCase sharecase);
 	
 	List<ShareCaseType> getAllShareCaseTypes();
+	
+	List<ShareCase> getShareCasesByCaseType(int userName);
 }

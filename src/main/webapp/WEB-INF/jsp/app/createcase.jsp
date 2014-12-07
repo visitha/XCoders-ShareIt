@@ -49,14 +49,14 @@
 						<div class="form-group">
 							<form:label path="caseDiscription">Case Description :   </form:label>
 							<form:textarea path="caseDiscription" class="form-control"
-								id="caseDiscription" placeholder="Case Description" />
+								id="caseDiscription" style="height:200px;" placeholder="Case Description" />
 						</div>
 
 					</tr>
 					<tr>
 						<div class="form-group">
 							<form:label path="expireDate">Expire Date :   </form:label>
-							<form:input id="expireDate" path="expireDate" />
+							<form:input id="expireDate" path="expireDate" class="form-control" style="width:50%"/>
 							<%-- <iTag:input path="expireDate" label="expireDate" placeholder="expireDataa" outerCssClass="date datepicker expireDate" inputWidthClass="col-xs-4" append="true" icon="icon-calendar" readonly="false" required="true"/> --%>
 						</div>
 
@@ -75,9 +75,6 @@
 
 					</tr>
 					<div class="form-group">
-						<div class="checkbox">
-							<label><input type="checkbox"> Remember me</label>
-						</div>
 						<button type="submit" class="btn btn-primary">Create Case</button>
 					</div>
 				</form:form>

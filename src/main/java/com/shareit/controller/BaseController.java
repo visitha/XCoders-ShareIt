@@ -24,6 +24,7 @@ import com.shareit.dao.DonatorDAO;
 import com.shareit.model.Donator;
 import com.shareit.model.ShareCase;
 import com.shareit.service.ShareCasesService;
+import com.shareit.service.UserService;
 
 @Controller
 public class BaseController {
@@ -34,10 +35,12 @@ public class BaseController {
 			.getLogger(BaseController.class);
 
 	private final ShareCasesService shareCasesService;
+	private final UserService userService;
 
 	@Autowired
-	public BaseController(ShareCasesService shareCasesService) {
+	public BaseController(ShareCasesService shareCasesService, UserService userService) {
 		this.shareCasesService = shareCasesService;
+		this.userService = userService;
 	}
 
 	// @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -92,6 +95,7 @@ public class BaseController {
 				"Spring Security Login Form - Database Authentication");
 		model.addObject("message", "This is default page!");
 		model.setViewName("hello");
+		List<ShareCase> finalShareCaseList = new ArrayList<ShareCase>();
 		
 		String logginUser = "";
 		// check if user is login
@@ -99,17 +103,31 @@ public class BaseController {
 				.getAuthentication();
 		if (!(auth instanceof AnonymousAuthenticationToken)) {
 			UserDetails userDetail = (UserDetails) auth.getPrincipal();
-			logginUser = userDetail.getUsername();
-
-			List<ShareCase> shareCaseList = new ArrayList<ShareCase>();
-			shareCaseList = this.shareCasesService
-					.getShareCasesByUserName(logginUser);
-			model.addObject("shareCasesList", shareCaseList);
-		
+			logginUser = userDetail.getUsername();	
 			model.addObject("username", userDetail.getUsername());
-
 		}
-
+		
+		List<String> currentUserRoles = this.userService.getUserRoles(logginUser);
+		
+		for(String role : currentUserRoles){
+			if(role.equalsIgnoreCase("ROLE_DONATOR")){
+				List<ShareCase> shareCaseList = this.shareCasesService.getAllRefugeeShareCases();
+				finalShareCaseList.addAll(shareCaseList);
+			}else if(role.equalsIgnoreCase("ROLE_REFUGEE")){
+				List<ShareCase> shareCaseList = this.shareCasesService.getAllDonationShareCases();
+				finalShareCaseList.addAll(shareCaseList);
+			}else if(role.equalsIgnoreCase("ROLE_BUYER")){
+				List<ShareCase> shareCaseList = this.shareCasesService.getAllSellShareCases();
+				finalShareCaseList.addAll(shareCaseList);
+			}else if(role.equalsIgnoreCase("ROLE_SELLER")){
+				List<ShareCase> shareCaseList = this.shareCasesService.getAllBuyShareCases();
+				finalShareCaseList.addAll(shareCaseList);
+			}
+		}
+//		List<ShareCase> shareCaseList = new ArrayList<ShareCase>();
+//		shareCaseList = this.shareCasesService
+//				.getShareCasesByUserName(logginUser);
+		model.addObject("shareCasesList", finalShareCaseList);
 		return model;
 
 	}

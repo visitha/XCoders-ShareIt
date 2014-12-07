@@ -34,7 +34,28 @@ public class ShareCasesServiceImpl implements ShareCasesService{
 
 	@Override
 	public List<ShareCaseType> getAllShareCaseTypes() {
-		// TODO Auto-generated method stub
 		return this.shareCasesDAO.getAllShareCaseTypes();
 	}
+	
+	@Override
+	public List<ShareCase> getAllRefugeeShareCases() {
+		return this.shareCasesDAO.getShareCasesByCaseType(4);
+	}
+	
+	@Override
+	public List<ShareCase> getAllBuyShareCases() {
+		return this.shareCasesDAO.getShareCasesByCaseType(3);
+	}
+	
+	@Override
+	public List<ShareCase> getAllDonationShareCases() {
+		return this.shareCasesDAO.getShareCasesByCaseType(1);
+	}
+	@Override
+	
+	public List<ShareCase> getAllSellShareCases() {
+		return this.shareCasesDAO.getShareCasesByCaseType(2);
+	}
+	
+	
 }

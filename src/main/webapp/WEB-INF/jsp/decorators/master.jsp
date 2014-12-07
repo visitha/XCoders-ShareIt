@@ -1,6 +1,7 @@
 <%@page import="org.springframework.web.servlet.support.RequestContext"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <%@ taglib prefix="decorator"
 	uri="http://www.opensymphony.com/sitemesh/decorator"%>
@@ -24,7 +25,8 @@
 	href="${ROOT}/resources/lib/bootstrap/less/bootstrap.css">
 <link rel="stylesheet"
 	href="${ROOT}/resources/lib/font-awesome/css/font-awesome.css">
-<link rel="stylesheet" href="${ROOT}/resources/lib/bootstrap/css/datepicker.css">
+<link rel="stylesheet"
+	href="${ROOT}/resources/lib/bootstrap/css/datepicker.css">
 <link rel="stylesheet" href="${ROOT}/resources/css/main.css">
 
 
@@ -32,8 +34,10 @@
 	src="${ROOT}/resources/lib/jQuery/js/jquery-1.10.1.min.js"></script>
 <script type="text/javascript"
 	src="${ROOT}/resources/lib/bootstrap/js/bootstrap.min.js"></script>
-	 <script type="text/javascript" src="${ROOT}/resources/lib/bootstrap/js/bootstrap-datepicker.js"></script>
-	 <script type="text/javascript" src="${ROOT}/resources/lib/bootstrap-select/js/bootstrap-select.js"></script>
+<script type="text/javascript"
+	src="${ROOT}/resources/lib/bootstrap/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript"
+	src="${ROOT}/resources/lib/bootstrap-select/js/bootstrap-select.js"></script>
 
 <script>
 	function formSubmit() {
@@ -76,7 +80,7 @@
 					style="margin-top: 10px; color: rgb(200, 197, 197)">
 					<c:if test="${username != null }">
 						<h2>
-							Welcome User : ${username} <a></a>
+							Welcome : ${username} <a></a>
 						</h2>
 					</c:if>
 				</ul>
@@ -95,35 +99,42 @@
 								<ul class="nav navbar-nav">
 									<li class="active"><a href="${ROOT}/welcome">Home <span
 											class="sr-only">(current)</span></a></li>
-									<li class="dropdown">
-										<a href="#" class="dropdown-toggle"
-											data-toggle="dropdown" role="button" aria-expanded="false">Administration
+									<li class="dropdown"><a href="#" class="dropdown-toggle"
+										data-toggle="dropdown" role="button" aria-expanded="false">Administration
 											<span class="caret"></span>
-										</a>
+									</a>
 										<ul class="dropdown-menu" role="menu">
 											<li><a href="#">Create User</a></li>
 											<li class="divider"></li>
 											<li><a href="#">Search</a></li>
-										</ul>
-									</li>
-									<li class="dropdown">
-										<a href="#" class="dropdown-toggle"
-											data-toggle="dropdown" role="button" aria-expanded="false">Donations
+										</ul></li>
+									<li class="dropdown"><a href="#" class="dropdown-toggle"
+										data-toggle="dropdown" role="button" aria-expanded="false">Donations
 											<span class="caret"></span>
-										</a>
+									</a>
 										<ul class="dropdown-menu" role="menu">
-											<li><a href="${ROOT}/getCreateCasePage">Create Donation</a></li>
+											<li><a href="${ROOT}/getCreateCasePage">Create
+													Donation</a></li>
 											<li class="divider"></li>
 											<li><a href="#">Search</a></li>
-										</ul>
-									</li>
+										</ul></li>
 								</ul>
-								<form class="navbar-form navbar-right" role="search">
-									<div class="form-group">
-										<input type="text" class="form-control" placeholder="Search">
+								<form:form id="addUserForm" method="GET"
+									action="/ShareIt4/filterCase" commandName="userForm"
+									class="form-horizontal navbar-form navbar-right">
+									<div class="form-group" style="padding-right:20px;">
+										<select id="filterType" name="filterType"
+											class="form-control selectpicker">
+											<option value="">Select Filter Type</option>
+											<option value="1">Donations</option>
+											<option value="2">Disasters</option>
+											<option value="3">Buy</option>
+											<option value="4">Sell</option>
+											<option value="5">Finalized Cases</option>
+										</select>
 									</div>
 									<button type="submit" class="btn btn-default">Submit</button>
-								</form>
+								</form:form>
 							</div>
 							<!-- /.navbar-collapse -->
 						</div>
@@ -151,10 +162,10 @@
 	</div>
 	<div>
 		<div id="body" class="container">
-		<decorator:body />
+			<decorator:body />
 		</div>
 	</div>
-	
+
 
 </body>
 </html>

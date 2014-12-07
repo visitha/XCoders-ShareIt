@@ -14,4 +14,6 @@ public interface UserDAO {
 	void saveUser(User user);
 	
 	void saveUserRoles(String user, String springRole);
+	
+	List<String> getUserRoles(String user);
 }

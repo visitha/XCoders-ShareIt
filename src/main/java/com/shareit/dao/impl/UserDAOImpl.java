@@ -87,7 +87,6 @@ public class UserDAOImpl implements UserDAO{
 				} catch (SQLException e) {}
 			}
 		}
-		
 	}
 	
 	@Override
@@ -131,8 +130,8 @@ public class UserDAOImpl implements UserDAO{
 	public void saveUserRoles(String user, String springRole) {
 		String sql = "INSERT INTO user_roles_assignments " +
 				"(username,role) VALUES (?, ?)";
+		
 		Connection conn = null;
- 
 		try {
 			conn = dataSource.getConnection();
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -144,7 +143,6 @@ public class UserDAOImpl implements UserDAO{
  
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
- 
 		} finally {
 			if (conn != null) {
 				try {
@@ -152,7 +150,33 @@ public class UserDAOImpl implements UserDAO{
 				} catch (SQLException e) {}
 			}
 		}
-		
 	}
 
+	@Override
+	public List<String> getUserRoles(String user) {
+		String sql = "SELECT role FROM user_roles_assignments WHERE username = '"+user+"'";
+		List<String> userRolesList = new ArrayList<String>();
+		Connection conn = null;
+ 
+		try {
+			conn = dataSource.getConnection();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				userRolesList.add(rs.getString("role"));
+			}
+			rs.close();
+			ps.close();
+			return userRolesList;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			if (conn != null) {
+				try {
+				conn.close();
+				} catch (SQLException e) {}
+			}
+		}
+	}
 }

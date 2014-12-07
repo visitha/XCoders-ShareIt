@@ -43,4 +43,9 @@ public class UserServiceImpl implements UserService{
 		this.userDAO.saveUserRoles(user, role);
 		
 	}
+	
+	@Override
+	public List<String> getUserRoles(String username) {
+		return userDAO.getUserRoles(username);
+	}
 }

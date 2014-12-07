@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.shareit.model.ShareCase;
@@ -99,6 +100,39 @@ public class CaseController {
 		
 		return "createcase";
 
+	}
+	
+	@RequestMapping(value="/filterCase")
+	@ResponseBody
+	public ModelAndView filterShareCases(@RequestParam("filterType") String filterType ){
+		List<ShareCase> finalShareCaseList = new ArrayList<ShareCase>();
+		ModelAndView model = new ModelAndView();
+		model.setViewName("hello");
+		
+		Authentication auth = SecurityContextHolder.getContext()
+				.getAuthentication();
+		if (!(auth instanceof AnonymousAuthenticationToken)) {
+			UserDetails userDetail = (UserDetails) auth.getPrincipal();
+		
+			model.addObject("username", userDetail.getUsername());
+			model.addObject("msg", "sucess");
+			int userId = this.userService.getUserIdByName(userDetail.getUsername());
+		}
+		
+		if(filterType.equals("1")){
+			finalShareCaseList = this.shareCasesService.getAllDonationShareCases();
+		}else if(filterType.equals("2")){
+			finalShareCaseList = this.shareCasesService.getAllRefugeeShareCases();
+		}else if(filterType.equals("3")){
+			finalShareCaseList = this.shareCasesService.getAllBuyShareCases();
+		}else if(filterType.equals("4")){
+			finalShareCaseList = this.shareCasesService.getAllSellShareCases();
+		}else if(filterType.equals("5")){
+			finalShareCaseList = this.shareCasesService.getAllSellShareCases();
+		}
+		model.addObject("shareCasesList", finalShareCaseList);
+		
+		return model;
 	}
 	
 }

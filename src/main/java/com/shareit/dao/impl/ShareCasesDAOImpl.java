@@ -163,5 +163,42 @@ public class ShareCasesDAOImpl implements ShareCasesDAO {
 			}
 		}
 	}
+	
+	@Override
+	public List<ShareCase> getShareCasesByCaseType(int caseTypeId) {
+		List<ShareCase> shareCaseList = new ArrayList<ShareCase>();
+		Connection conn = null;
+
+		try {
+			conn = dataSource.getConnection();
+			Statement stmt = conn.createStatement();
+		      String query ="SELECT * FROM share_cases WHERE case_type_id="+caseTypeId+"";
+		      ResultSet rs = stmt.executeQuery(query);
+		      
+		      while (rs.next()) {
+		         ShareCase shareCase = new ShareCase();
+					
+		         shareCase.setId((rs.getInt("sharecase_id")));
+		         shareCase.setCaseTitle(rs.getString("case_title"));
+		         shareCase.setCaseTypeId(rs.getInt("case_type_id"));
+		         shareCase.setCaseDiscription(rs.getString("case_description"));
+		         shareCase.setExpireDate(rs.getString("expire_date"));
+		         shareCase.setRefugeeId(rs.getInt("refugee_id"));
+					
+		         shareCaseList.add(shareCase);
+		      }
+			rs.close();
+			return shareCaseList;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+				}
+			}
+		}
+	}
 
 }
