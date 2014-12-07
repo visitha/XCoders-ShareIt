@@ -11,13 +11,14 @@ public class ShareCase implements Serializable{
 	public int caseTypeId;
 	public String caseDiscription;
 	public String expireDate;
+	public String createdDate;
 	public int donatorId;
 	public int refugeeId; 	
 	
 	public ShareCase() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public ShareCase(int caseId, String caseTitle, String caseDiscription, int caseTypeId, String expireDate, int refugeeId) {
 		this.caseId = caseId;
 		this.caseTitle = caseTitle;
@@ -27,6 +28,15 @@ public class ShareCase implements Serializable{
 		this.refugeeId = refugeeId;
 	}
 
+	
+	public String getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(String createdDate) {
+		this.createdDate = createdDate;
+	}
+	
 	public int getId() {
 		return this.caseId;
 	}

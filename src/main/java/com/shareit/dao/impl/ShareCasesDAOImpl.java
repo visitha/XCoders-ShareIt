@@ -84,7 +84,7 @@ public class ShareCasesDAOImpl implements ShareCasesDAO {
 		         shareCase.setCaseTitle(rs.getString("case_title"));
 		         shareCase.setCaseTypeId(rs.getInt("case_type_id"));
 		         shareCase.setCaseDiscription(rs.getString("case_description"));
-		         shareCase.setExpireDate(rs.getTimestamp("expire_date").toString());
+		         shareCase.setExpireDate(rs.getString("expire_date"));
 		         shareCase.setRefugeeId(rs.getInt("refugee_id"));
 					
 		         shareCaseList.add(shareCase);
@@ -106,7 +106,7 @@ public class ShareCasesDAOImpl implements ShareCasesDAO {
 	@Override
 	public void insertShareCase(ShareCase sharecase) {
 		String sql = "INSERT INTO share_cases " +
-				"(case_title, case_description, case_type_id) VALUES (?, ?, ?)";
+				"(case_title, case_description, case_type_id, expire_date, created_date,donator_id) VALUES (?, ?, ?, ?, ?, ?)";
 		Connection conn = null;
  
 		try {
@@ -116,6 +116,9 @@ public class ShareCasesDAOImpl implements ShareCasesDAO {
 			ps.setString(1, sharecase.getCaseTitle());
 			ps.setString(2, sharecase.getCaseDiscription());
 			ps.setInt(3, sharecase.getCaseTypeId());
+			ps.setString(4, sharecase.getExpireDate());
+			ps.setString(5, sharecase.getCreatedDate());
+			ps.setInt(6, sharecase.getDonatorId());
 			ps.executeUpdate();
 			ps.close();
  

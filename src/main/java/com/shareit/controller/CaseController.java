@@ -1,6 +1,9 @@
 package com.shareit.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.shareit.model.ShareCase;
 import com.shareit.service.ShareCasesService;
+import com.shareit.service.UserService;
 
 @Controller
 public class CaseController {
@@ -29,10 +33,12 @@ public class CaseController {
 			.getLogger(BaseController.class);
 
 	private final ShareCasesService shareCasesService;
+	private final UserService userService;
 
 	@Autowired
-	public CaseController(ShareCasesService shareCasesService) {
+	public CaseController(ShareCasesService shareCasesService, UserService userService) {
 		this.shareCasesService = shareCasesService;
+		this.userService = userService;
 	}
 	
 	@RequestMapping(value = "/getCreateCasePage", method = RequestMethod.GET)
@@ -66,8 +72,7 @@ public class CaseController {
 	@RequestMapping(value = "/createCase", method = RequestMethod.POST)
 	public String createCase(@ModelAttribute("userForm")ShareCase shareCase, 
 			   ModelMap model,  final BindingResult bindingResult) {
-
-		this.shareCasesService.insertShareCaseToDB(shareCase);
+		
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
 		if (!(auth instanceof AnonymousAuthenticationToken)) {
@@ -75,9 +80,18 @@ public class CaseController {
 		
 			model.addAttribute("username", userDetail.getUsername());
 			model.addAttribute("msg", "sucess");
+			int userId = this.userService.getUserIdByName(userDetail.getUsername());
+		
+			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			Date date = new Date();
+			System.out.println(dateFormat.format(date)); 
+			shareCase.setCreatedDate(dateFormat.format(date));
+			shareCase.setDonatorId(userId);
 
 		}
-
+		
+		this.shareCasesService.insertShareCaseToDB(shareCase);
+		
 		return "createcase";
 
 	}

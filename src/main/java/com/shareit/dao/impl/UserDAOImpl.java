@@ -20,7 +20,7 @@ public class UserDAOImpl implements UserDAO{
 	
 	@Override
 	public int getUserByName(String username) {
-		String sql = "SELECT * FROM users WHERE username = ?";
+		String sql = "SELECT user_id FROM users WHERE username = ?";
 		 
 		Connection conn = null;
  
@@ -28,17 +28,20 @@ public class UserDAOImpl implements UserDAO{
 			conn = dataSource.getConnection();
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, username);
+			
 			Donator donator = null;
+			int userId = 0;
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
-				donator = new Donator(
-					rs.getString("name"), 
-					rs.getInt("age")
-				);
+				userId = rs.getInt("user_id");
+//				donator = new Donator(
+//					rs.getString("name"), 
+//					rs.getInt("age")
+//				);
 			}
 			rs.close();
 			ps.close();
-			return 0;
+			return userId;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {

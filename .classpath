@@ -31,4 +31,5 @@
   <classpathentry kind="var" path="M2_REPO/org/springframework/security/spring-security-acl/3.2.3.RELEASE/spring-security-acl-3.2.3.RELEASE.jar" sourcepath="M2_REPO/org/springframework/security/spring-security-acl/3.2.3.RELEASE/spring-security-acl-3.2.3.RELEASE-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/commons-lang/commons-lang/2.3/commons-lang-2.3.jar" sourcepath="M2_REPO/commons-lang/commons-lang/2.3/commons-lang-2.3-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/cglib/cglib-nodep/2.2.2/cglib-nodep-2.2.2.jar" sourcepath="M2_REPO/cglib/cglib-nodep/2.2.2/cglib-nodep-2.2.2-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/joda-time/joda-time/2.1/joda-time-2.1.jar" sourcepath="M2_REPO/joda-time/joda-time/2.1/joda-time-2.1-sources.jar"/>
 </classpath>

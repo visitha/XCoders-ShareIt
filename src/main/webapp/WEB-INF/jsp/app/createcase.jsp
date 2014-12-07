@@ -1,12 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="iTag" tagdir="/WEB-INF/tags" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<script type="text/javascript">
+/* var aDate = $('.expireDate').datepicker({
+	weekStart: 1,
+    autoclose: true
+}).on("changeDate", function(ev){
+    aDate.hide();
+}).data("datepicker");
+ */
+$(document).ready(function () {
+    
+    $('#expireDate').datepicker({
+        format: "dd/mm/yyyy"
+    });  
+
+});
+</script>
 </head>
 <body>
 	<h1>Title : ${title}</h1>
@@ -38,14 +55,15 @@
 					<tr>
 						<div class="form-group">
 							<form:label path="expireDate">Birthday (mm/dd/yyyy) :   </form:label>
-							<form:input path="expireDate" />
+							<form:input id ="expireDate" path="expireDate" />
+							<%-- <iTag:input path="expireDate" label="expireDate" placeholder="expireDataa" outerCssClass="date datepicker expireDate" inputWidthClass="col-xs-4" append="true" icon="icon-calendar" readonly="false" required="true"/> --%>
 						</div>
 
 					</tr>
 					<tr>
 						<div class="form-group">
 							<form:label path="caseTypeId">Case Types :   </form:label>
-							<form:select path="caseTypeId" items="${caseTypes}" />
+							<form:select path="caseTypeId" items="${caseTypes}" value="9"/>
 						</div>
 
 					</tr>

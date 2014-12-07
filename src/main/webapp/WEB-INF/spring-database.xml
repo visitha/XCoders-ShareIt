@@ -16,8 +16,16 @@
 		<bean id="shareCasesService" class="com.shareit.service.impl.ShareCasesServiceImpl">
 		</bean>
 		
+		<bean id="userService" class="com.shareit.service.impl.UserServiceImpl">
+		</bean>
+		
 		<bean id="shareCasesDAO" class="com.shareit.dao.impl.ShareCasesDAOImpl">
 			<property name="dataSource" ref="dataSource" />
 		</bean>
+		
+		<bean id="userDAO" class="com.shareit.dao.impl.UserDAOImpl">
+			<property name="dataSource" ref="dataSource" />
+		</bean>
+		
 
 </beans>

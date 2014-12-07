@@ -1,12 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="iTag" tagdir="/WEB-INF/tags" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<script type="text/javascript">
+/* var aDate = $('.expireDate').datepicker({
+	weekStart: 1,
+    autoclose: true
+}).on("changeDate", function(ev){
+    aDate.hide();
+}).data("datepicker");
+ */
+$(document).ready(function () {
+    
+    $('#expireDate').datepicker({
+        format: "dd/mm/yyyy"
+    });  
+
+});
+</script>
 </head>
 <body>
 	<h1>Title : ${title}</h1>
@@ -17,92 +34,50 @@
 		<div class="panel panel-info">
 			<div class="panel-heading">Bootstrap: Basic Form</div>
 			<div class="panel-body">
-				<form method="POST" action="/ShareIt4/createCase">
-					<div class="form-group">
-						<label for="caseTitle">Case Title : </label> <input type="email"
-							class="form-control" id="caseTitle" placeholder="Case Title">
-					</div>
-					<div class="form-group">
-						<label for="caseDiscription">Case Description : </label>
-						<textarea class="form-control" rows="3" class="form-control"
-							id="caseDiscription" placeholder="Case Description"></textarea>
-					</div>
 
-					<div class="form-group">
-						<label for="caseDiscription">Expire Date : </label>
-						<div class='input-group date' id='expireDate'>
-							<input type='text' class="form-control" /> <span
-								class="input-group-addon"><span
-								class="glyphicon glyphicon-calendar"></span> </span>
+				<form:form method="POST" action="/ShareIt4/createCase"
+					commandName="userForm">
+					<tr>
+						<div class="form-group">
+							<form:label path="caseTitle">Name :   </form:label>
+							<form:input path="caseTitle" class="form-control" id="caseTitle"
+								placeholder="Case Title" />
+						</div>
+					</tr>
+					<tr>
+						<div class="form-group">
+							<form:label path="caseDiscription">Case Description :   </form:label>
+							<form:textarea path="caseDiscription" class="form-control"
+								id="caseDiscription" placeholder="Case Description" />
 						</div>
 
-						<script type="text/javascript">
-							// When the document is ready
-							$(document).ready(function() {
+					</tr>
+					<tr>
+						<div class="form-group">
+							<form:label path="expireDate">Birthday (mm/dd/yyyy) :   </form:label>
+							<form:input id ="expireDate" path="expireDate" />
+							<%-- <iTag:input path="expireDate" label="expireDate" placeholder="expireDataa" outerCssClass="date datepicker expireDate" inputWidthClass="col-xs-4" append="true" icon="icon-calendar" readonly="false" required="true"/> --%>
+						</div>
 
-								$('#expireDate').datepicker({
-									format : "dd/mm/yyyy"
-								});
-								
-								$(".dropdown-menu li a").click(function(){
-									  var selText = $(this).text();
-									  $(this).parents('.btn-group').find('.dropdown-toggle').html(selText+' <span class="caret"></span>');
-								});
+					</tr>
+					<tr>
+						<div class="form-group">
+							<form:label path="caseTypeId">Case Types :   </form:label>
+							<form:select path="caseTypeId" items="${caseTypes}" value="9"/>
+						</div>
 
-							});
-						</script>
-					</div>
-
-					<div class="btn-group">
-						<a class="btn btn-default dropdown-toggle btn-select2"
-							data-toggle="dropdown" href="#">Select a Region <span
-							class="caret"></span></a>
-						<ul class="dropdown-menu" id="caseTypeId">
-							<li><a href="#">California</a></li>
-							<li><a href="#">New York</a></li>
-							<li><a href="#">Massachusetts</a></li>
-							<li class="divider"></li>
-							<li><a href="#">Quebec</a></li>
-							<li><a href="#">Ontario</a></li>
-							<li><a href="#">British Columbia</a></li>
-						</ul>
-					</div>
-
+					</tr>
 					<div class="form-group">
 						<div class="checkbox">
 							<label><input type="checkbox"> Remember me</label>
 						</div>
 						<button type="submit" class="btn btn-primary">Login</button>
 					</div>
-
-				</form>
-
+				</form:form>
 			</div>
 		</div>
-		
-		<form:form method="POST" action="/ShareIt4/createCase" commandName="userForm">
-   <table>
-    <tr>
-        <td><form:label path="caseTitle">Name</form:label></td>
-        <td><form:input path="caseTitle" /></td>
-    </tr>
-    <tr>
-        <td><form:label path="caseDiscription">Age</form:label></td>
-        <td><form:input path="caseDiscription" /></td>
-    </tr>
-    <tr>
-        <td><form:label path="caseId">id</form:label></td>
-        <td><form:input path="caseId" /></td>
-    </tr>
-    <tr>
-        <td colspan="2">
-            <input type="submit" value="Submit"/>
-        </td>
-    </tr>
-</table>  
-</form:form>
-
 	</div>
+
 
 </body>
 </html>
