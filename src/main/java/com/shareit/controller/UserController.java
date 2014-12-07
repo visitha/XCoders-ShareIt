@@ -19,16 +19,15 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.shareit.model.ShareCase;
-import com.shareit.model.ShareCaseType;
+import com.shareit.model.User;
+import com.shareit.model.UserRole;
 import com.shareit.service.ShareCasesService;
 import com.shareit.service.UserService;
 
 @Controller
-public class CaseController {
+public class UserController {
 
 	private final static org.slf4j.Logger logger = LoggerFactory
 			.getLogger(BaseController.class);
@@ -37,68 +36,69 @@ public class CaseController {
 	private final UserService userService;
 
 	@Autowired
-	public CaseController(ShareCasesService shareCasesService, UserService userService) {
+	public UserController(ShareCasesService shareCasesService, UserService userService) {
 		this.shareCasesService = shareCasesService;
 		this.userService = userService;
 	}
 	
-	@RequestMapping(value = "/getCreateCasePage", method = RequestMethod.GET)
+	@RequestMapping(value = "/createUser", method = RequestMethod.GET)
 	public String getCreateCasePage(Map<String, Object> model) {
-
-//		ModelAndView model = new ModelAndView();
-//		model.addObject("msg", "You've been logged out successfully.");
-//		model.setViewName("createcase");
-		
+        
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
 		if (!(auth instanceof AnonymousAuthenticationToken)) {
 			UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		
-			ShareCase userForm = new ShareCase();    
-	        model.put("userForm", userForm);
-	        List<ShareCaseType> caseTypesList = new ArrayList<ShareCaseType>();
-	        caseTypesList = this.shareCasesService.getAllShareCaseTypes();
-	        model.put("caseTypes", caseTypesList);
-	        
 			model.put("username", userDetail.getUsername());
-
 		}
-
-		return "createcase";
+		
+        List<Integer> caseTypesList = new ArrayList<>();
+        caseTypesList.add(1);
+        caseTypesList.add(2);
+        caseTypesList.add(3);
+        model.put("caseTypes", caseTypesList);
+	
+        User userForm = new User();    
+        model.put("userForm", userForm);
+		final List<UserRole> userRoleList = this.userService.getAllUserRoles();
+		model.put("userRoles", userRoleList);
+		return "CreateUser";
 
 	}
 	
-	@RequestMapping(value = "/createCase", method = RequestMethod.POST)
-	public String createCase(@ModelAttribute("userForm")ShareCase shareCase, 
+	@RequestMapping(value = "/createUser", method = RequestMethod.POST)
+	public String addNewUser(@ModelAttribute("userForm")User user, 
 			   ModelMap model,  final BindingResult bindingResult) {
-		
+		String logginUser = "";
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
 		if (!(auth instanceof AnonymousAuthenticationToken)) {
 			UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		
+			logginUser = userDetail.getUsername();
 			model.addAttribute("username", userDetail.getUsername());
 			model.addAttribute("msg", "sucess");
-			int userId = this.userService.getUserIdByName(userDetail.getUsername());
+			int userId = this.userService.getUserIdByName(logginUser);
 		
 			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 			Date date = new Date();
 			System.out.println(dateFormat.format(date)); 
-			shareCase.setCreatedDate(dateFormat.format(date));
-			shareCase.setDonatorId(userId);
 
 		}
 		
-		this.shareCasesService.insertShareCaseToDB(shareCase);
+		this.userService.saveUser(user);
+		for(String role : user.getRoles()){
+			this.userService.saveUserRole(user.getUsername(), role);
+		}
+//		final List<UserRole> userRoleList = this.userService.getAllUserRoles();
+//		model.put("userRoles", userRoleList);
 		
-		ShareCase userForm = new ShareCase();    
-        model.put("userForm", userForm);
-        List<ShareCaseType> caseTypesList = new ArrayList<ShareCaseType>();
-        caseTypesList = this.shareCasesService.getAllShareCaseTypes();
-        model.put("caseTypes", caseTypesList);		
+//		List<ShareCase> shareCaseList = new ArrayList<ShareCase>();
+//		shareCaseList = this.shareCasesService
+//				.getShareCasesByUserName(logginUser);
+//		model.addAttribute("shareCasesList", shareCaseList);
+//	
+//		model.addAttribute("username", logginUser);
 		
-		return "createcase";
+		return "login";
 
 	}
-	
 }

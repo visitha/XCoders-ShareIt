@@ -1,9 +1,13 @@
 package com.shareit.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.shareit.dao.ShareCasesDAO;
 import com.shareit.dao.UserDAO;
+import com.shareit.model.User;
+import com.shareit.model.UserRole;
 import com.shareit.service.UserService;
 
 public class UserServiceImpl implements UserService{
@@ -23,4 +27,20 @@ public class UserServiceImpl implements UserService{
 		return null;
 	}
 
+	@Override
+	public List<UserRole> getAllUserRoles() {
+		// TODO Auto-generated method stub
+		return userDAO.getAllUserRoles();
+	}
+	
+	@Override
+	public void saveUser(User user) {
+		this.userDAO.saveUser(user);
+	}
+	
+	@Override
+	public void saveUserRole(String user, String role) {
+		this.userDAO.saveUserRoles(user, role);
+		
+	}
 }

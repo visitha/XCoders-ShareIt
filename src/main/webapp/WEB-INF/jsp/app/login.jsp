@@ -66,7 +66,7 @@
 				</div>
 
 				<div class="form-group text-center">
-					<a href="${ROOT}">Create Account</a> | <a
+					<a href="${ROOT}/createUser">Create Account</a> | <a
 						href="${ROOT}">Forgot Username</a>
 				</div>
 

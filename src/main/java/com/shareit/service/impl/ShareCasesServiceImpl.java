@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.shareit.dao.ShareCasesDAO;
 import com.shareit.model.ShareCase;
+import com.shareit.model.ShareCaseType;
 import com.shareit.service.ShareCasesService;
 
 public class ShareCasesServiceImpl implements ShareCasesService{
@@ -27,8 +28,13 @@ public class ShareCasesServiceImpl implements ShareCasesService{
 	
 	@Override
 	public void insertShareCaseToDB(ShareCase shareCase) {
-		shareCasesDAO.insertShareCase(shareCase);
+		this.shareCasesDAO.insertShareCase(shareCase);
 		
 	}
 
+	@Override
+	public List<ShareCaseType> getAllShareCaseTypes() {
+		// TODO Auto-generated method stub
+		return this.shareCasesDAO.getAllShareCaseTypes();
+	}
 }

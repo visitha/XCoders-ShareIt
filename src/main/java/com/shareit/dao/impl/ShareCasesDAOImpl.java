@@ -13,6 +13,7 @@ import javax.sql.DataSource;
 import com.shareit.dao.ShareCasesDAO;
 import com.shareit.model.Donator;
 import com.shareit.model.ShareCase;
+import com.shareit.model.ShareCaseType;
 
 public class ShareCasesDAOImpl implements ShareCasesDAO {
 
@@ -40,7 +41,7 @@ public class ShareCasesDAOImpl implements ShareCasesDAO {
 						rs.getString("case_title"),
 						rs.getString("case_description"),
 						rs.getInt("case_type_id"),
-						rs.getTimestamp("expire_date").toString(), rs.getInt("refugee_id"));
+						rs.getString("expire_date"), rs.getInt("refugee_id"));
 			}
 			rs.close();
 			ps.close();
@@ -59,9 +60,6 @@ public class ShareCasesDAOImpl implements ShareCasesDAO {
 
 	@Override
 	public List<ShareCase> getShareCasesByUserName(String userName) {
-		String sql = "SELECT sharecase_id, case_title, case_type_id, case_description, expire_date, refugee_id" +
-				" FROM share_cases AS sc INNER JOIN users AS u ON sc.donator_id = u.user_id WHERE u.username = ?";
-//		String sql = "SELECT * FROM share_cases AS sc WHERE u.donator_id = 7";
 		List<ShareCase> shareCaseList = new ArrayList<ShareCase>();
 		Connection conn = null;
 
@@ -133,6 +131,37 @@ public class ShareCasesDAOImpl implements ShareCasesDAO {
 			}
 		}
 		
+	}
+	
+	@Override
+	public List<ShareCaseType> getAllShareCaseTypes() {
+		List<ShareCaseType> shareCaseList = new ArrayList<ShareCaseType>();
+		Connection conn = null;
+
+		try {
+			conn = dataSource.getConnection();
+			Statement stmt = conn.createStatement();
+		      String query ="SELECT * FROM share_case_types";
+		      ResultSet rs = stmt.executeQuery(query);
+		      while (rs.next()) {
+		    	  ShareCaseType type = new ShareCaseType();
+		    	  type.setCaseTypeId(rs.getInt("case_type_id"));
+		    	  type.setCaseType(rs.getString("case_type"));
+					
+		         shareCaseList.add(type);
+		      }
+			rs.close();
+			return shareCaseList;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+				}
+			}
+		}
 	}
 
 }
