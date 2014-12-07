@@ -25,6 +25,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">${shareCase.caseTitle}</h3>
+					<button class="btn  btn-primary" onclick="document.location='/ShareIt4/reviewCase/1'">View Details</button>
 				</div>
 				<div class="panel-body">
 					<div class="row">
