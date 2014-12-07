@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.shareit.model.ShareCase;
 import com.shareit.model.ShareCaseType;
+import com.shareit.model.ShareCaseUserDetails;
 
 public interface ShareCasesService {
 
@@ -22,5 +23,7 @@ public interface ShareCasesService {
 	List<ShareCase> getAllSellShareCases();
 	
 	List<ShareCase> getAllBuyShareCases();
+	
+	ShareCaseUserDetails getShareCaseByShareCaseId(int shareCaseId);
 	
 }

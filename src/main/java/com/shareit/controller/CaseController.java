@@ -14,9 +14,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,6 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.shareit.model.ShareCase;
 import com.shareit.model.ShareCaseType;
+import com.shareit.model.ShareCaseUserDetails;
 import com.shareit.service.ShareCasesService;
 import com.shareit.service.UserService;
 
@@ -134,5 +137,26 @@ public class CaseController {
 		
 		return model;
 	}
+	
+	@RequestMapping(value = "/reviewCase/{caseNumber}", method = RequestMethod.GET)
+    public String caseSummary(final Model model, @PathVariable final int caseNumber) {
+		
+		
+		ShareCaseUserDetails detailRequested = new ShareCaseUserDetails();
+		detailRequested = this.shareCasesService
+				.getShareCaseByShareCaseId(caseNumber);
+		
+		model.addAttribute("details", detailRequested.getCaseDescription());
+		model.addAttribute("fname", detailRequested.getUserFirstName());
+		model.addAttribute("lname", detailRequested.getUserLasttName());
+		model.addAttribute("email",detailRequested.getUserMail());
+		model.addAttribute("address", detailRequested.getUserAddress());
+		model.addAttribute("phone", detailRequested.getPhone());
+		model.addAttribute("caseid", detailRequested.getShareCaseId());
+		model.addAttribute("title", detailRequested.getCaseTitle());
+		model.addAttribute("expires", detailRequested.getExpireDate());
+		
+		return "casedetails";
+}
 	
 }

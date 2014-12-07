@@ -14,6 +14,7 @@ import com.shareit.dao.ShareCasesDAO;
 import com.shareit.model.Donator;
 import com.shareit.model.ShareCase;
 import com.shareit.model.ShareCaseType;
+import com.shareit.model.ShareCaseUserDetails;
 
 public class ShareCasesDAOImpl implements ShareCasesDAO {
 
@@ -199,6 +200,48 @@ public class ShareCasesDAOImpl implements ShareCasesDAO {
 				}
 			}
 		}
+	}
+	
+	@Override
+	public ShareCaseUserDetails getShareCaseByShareCaseId(int shareCaseId) {
+		// TODO Auto-generated method stub
+		ShareCase selectedShareCase = new ShareCase();
+		Connection conn = null;
+		ShareCaseUserDetails shareCase = new ShareCaseUserDetails();
+		try {
+			conn = dataSource.getConnection();
+			Statement stmt = conn.createStatement();
+			String query ="SELECT sharecase_id, first_name, last_name, case_title, case_type_id, email, address, phone, case_description, expire_date, refugee_id" +
+				" FROM share_cases AS sc INNER JOIN users AS u ON sc.donator_id = u.user_id WHERE sc.sharecase_id = "+shareCaseId+"";
+			ResultSet rs = stmt.executeQuery(query);
+			while (rs.next()) {
+			
+			String fname = rs.getString("case_title");
+	         String lname = rs.getString("case_description");
+	         int isbn = rs.getInt("sharecase_id");
+	         System.out.println(fname + "  " + lname+"   "+isbn);	         
+				
+	         shareCase.setShareCaseId((rs.getInt("sharecase_id")));
+	         shareCase.setCaseTitle(rs.getString("case_title"));
+	         shareCase.setCaseDescription(rs.getString("case_description"));
+	         shareCase.setExpireDate(rs.getString("expire_date"));
+	         shareCase.setUserFirstName(rs.getString("first_name"));
+	         shareCase.setUserLasttName(rs.getString("last_name"));
+	         shareCase.setPhone(rs.getString("phone"));
+	         shareCase.setUserMail(rs.getString("email"));
+	         shareCase.setUserAddress(rs.getString("address"));
+			}
+		} catch (SQLException e) {
+				throw new RuntimeException(e);
+			} finally {
+				if (conn != null) {
+					try {
+						conn.close();
+					} catch (SQLException e) {
+					}
+				}
+			}
+		return shareCase;
 	}
 
 }

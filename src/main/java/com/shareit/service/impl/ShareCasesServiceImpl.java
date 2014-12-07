@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.shareit.dao.ShareCasesDAO;
 import com.shareit.model.ShareCase;
 import com.shareit.model.ShareCaseType;
+import com.shareit.model.ShareCaseUserDetails;
 import com.shareit.service.ShareCasesService;
 
 public class ShareCasesServiceImpl implements ShareCasesService{
@@ -57,5 +58,10 @@ public class ShareCasesServiceImpl implements ShareCasesService{
 		return this.shareCasesDAO.getShareCasesByCaseType(2);
 	}
 	
-	
+	@Override
+	public ShareCaseUserDetails getShareCaseByShareCaseId(int shareCaseId) {
+		// TODO Auto-generated method stub
+		ShareCaseUserDetails shareCase = shareCasesDAO.getShareCaseByShareCaseId(shareCaseId);
+		return shareCase;
+	}
 }
