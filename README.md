@@ -33,3 +33,8 @@ Bootstrap,
 Bootstrap-Select,
 jQuery,
 mySQL
+
+## to log in to the app use following credentials
+
+### username : visitha
+### password: 123
