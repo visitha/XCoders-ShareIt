@@ -11,7 +11,7 @@
 
 	<div class="container">
 
-		<security:authorize ifAnyGranted="ROLE_ADMIN">
+		<%-- <security:authorize ifAnyGranted="ROLE_ADMIN">
 			<li>
 				<div>
 					<span class="navbar-text boldGrey noMargin"
@@ -20,12 +20,12 @@
 			</li>
 
 		</security:authorize>
-
+ --%>
 		<c:forEach items="${shareCasesList}" var="shareCase">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title">${shareCase.caseTitle}</h3>
-					<button class="btn  btn-primary" onclick="document.location='/ShareIt4/reviewCase/1'">View Details</button>
+					<h3 class="panel-title"> ${shareCase.caseId} . ${shareCase.caseTitle}</h3>
+					<button class="btn  btn-primary" style="margin-top:10px" onclick="document.location='/ShareIt4/reviewCase/ ${shareCase.caseId}'">View Details</button>
 				</div>
 				<div class="panel-body">
 					<div class="row">

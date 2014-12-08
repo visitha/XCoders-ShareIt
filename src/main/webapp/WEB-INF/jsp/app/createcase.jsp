@@ -33,7 +33,7 @@
 
 	<div class="container" style="width: 50%;">
 		<div class="panel panel-info">
-			<div class="panel-heading">Bootstrap: Basic Form</div>
+			<div class="panel-heading">Add a new case</div>
 			<div class="panel-body">
 
 				<form:form method="POST" action="/ShareIt4/createCase"

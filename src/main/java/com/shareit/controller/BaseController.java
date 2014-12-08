@@ -164,6 +164,44 @@ public class BaseController {
 
 	}
 
+	@RequestMapping(value = "/aboutUs", method = RequestMethod.GET)
+	public ModelAndView aboutUs() {
+
+		ModelAndView model = new ModelAndView();
+		model.setViewName("aboutUs");
+
+		String logginUser = "";
+		// check if user is login
+		Authentication auth = SecurityContextHolder.getContext()
+				.getAuthentication();
+		if (!(auth instanceof AnonymousAuthenticationToken)) {
+			UserDetails userDetail = (UserDetails) auth.getPrincipal();
+			logginUser = userDetail.getUsername();	
+			model.addObject("username", userDetail.getUsername());
+		}
+		
+		return model;
+
+	}
+	
+	@RequestMapping(value = "/contactUs", method = RequestMethod.GET)
+	public ModelAndView contactUs() {
+
+		ModelAndView model = new ModelAndView();
+		model.setViewName("contactUs");
+
+		String logginUser = "";
+		// check if user is login
+		Authentication auth = SecurityContextHolder.getContext()
+				.getAuthentication();
+		if (!(auth instanceof AnonymousAuthenticationToken)) {
+			UserDetails userDetail = (UserDetails) auth.getPrincipal();
+			logginUser = userDetail.getUsername();	
+			model.addObject("username", userDetail.getUsername());
+		}
+		return model;
+
+	}
 	// for 403 access denied page
 	@RequestMapping(value = "/403", method = RequestMethod.GET)
 	public ModelAndView accesssDenied() {

@@ -99,30 +99,36 @@
 								<ul class="nav navbar-nav">
 									<li class="active"><a href="${ROOT}/welcome">Home <span
 											class="sr-only">(current)</span></a></li>
+
+									<li class="dropdown"><a href="#" class="dropdown-toggle"
+										data-toggle="dropdown" role="button" aria-expanded="false">Share
+											Case <span class="caret"></span>
+									</a>
+										<ul class="dropdown-menu" role="menu">
+											<li><a href="${ROOT}/getCreateCasePage">Create new
+													Case</a></li>
+											<li class="divider"></li>
+											<li><a href="${ROOT}/myCases">View My Cases</a></li>
+											<li class="divider"></li>
+											<li><a href="#">Search</a></li>
+										</ul></li>
+
 									<li class="dropdown"><a href="#" class="dropdown-toggle"
 										data-toggle="dropdown" role="button" aria-expanded="false">Administration
 											<span class="caret"></span>
 									</a>
 										<ul class="dropdown-menu" role="menu">
-											<li><a href="#">Create User</a></li>
-											<li class="divider"></li>
-											<li><a href="#">Search</a></li>
+											<li><a href="#">Modify User Profile</a></li>
 										</ul></li>
-									<li class="dropdown"><a href="#" class="dropdown-toggle"
-										data-toggle="dropdown" role="button" aria-expanded="false">Donations
-											<span class="caret"></span>
-									</a>
-										<ul class="dropdown-menu" role="menu">
-											<li><a href="${ROOT}/getCreateCasePage">Create
-													Donation</a></li>
-											<li class="divider"></li>
-											<li><a href="#">Search</a></li>
-										</ul></li>
+										<li class=""><a href="${ROOT}/aboutUs">What We Do <span
+											class="sr-only">(current)</span></a></li>
+											<li class=""><a href="${ROOT}/contactUs">Contact Us <span
+											class="sr-only">(current)</span></a></li>
 								</ul>
 								<form:form id="addUserForm" method="GET"
 									action="/ShareIt4/filterCase" commandName="userForm"
 									class="form-horizontal navbar-form navbar-right">
-									<div class="form-group" style="padding-right:20px;">
+									<div class="form-group" style="padding-right: 20px;">
 										<select id="filterType" name="filterType"
 											class="form-control selectpicker">
 											<option value="">Select Filter Type</option>
