@@ -51,19 +51,16 @@
 						<div class="clearfix visible-xs"></div>
 						<div class="col-xs-4 col-sm-2 text-center">
 							<img src="${ROOT}/resources/img/flour.jpg"
-								" class="img-responsive img-circle img-thumbnail" /> <br /> <strong>First
-								option</strong>
+								" class="img-responsive img-circle img-thumbnail" /> <br /> <strong>Picture 1</strong>
 						</div>
 						<div class="col-xs-4 col-sm-2 text-center"
 							style="border-right: 1px solid #ccc; border-left: 1px solid #ccc;">
-							<img src="${ROOT}/resources/img/flour.jpg"
-								" class="img-responsive img-circle img-thumbnail" /> <br /> <strong>Here
-								goes another</strong>
+							<img src="${ROOT}/resources/img/water.jpg"
+								" class="img-responsive img-circle img-thumbnail" /> <br /> <strong>Picture 2</strong>
 						</div>
 						<div class="col-xs-4 col-sm-2 text-center">
-							<img src="${ROOT}/resources/img/flour.jpg"
-								" class="img-responsive img-circle img-thumbnail" /> <br /> <strong>And
-								yet one more to pick</strong>
+							<img src="${ROOT}/resources/img/rice.jpg"
+								" class="img-responsive img-circle img-thumbnail" /> <br /> <strong>Picture 3</strong>
 						</div>
 					</div>
 				</div>

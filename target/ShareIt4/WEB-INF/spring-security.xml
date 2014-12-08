@@ -16,7 +16,6 @@
 		    default-target-url="/welcome" 
 			authentication-failure-url="/login?error" 
 			username-parameter="username"
-			user_id-parameter="user_id"
 			password-parameter="password" />
 		<logout logout-success-url="/login?logout"  />
 		<!-- enable csrf protection -->

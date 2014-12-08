@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 @SuppressWarnings("serial")
 public class ShareCase implements Serializable{
 
-	public String caseId;
+	public int caseId;
 	public String caseTitle;
 	public int caseTypeId;
 	public String caseDiscription;
@@ -19,15 +19,15 @@ public class ShareCase implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void setCaseId(String caseId) {
+	public void setCaseId(int caseId) {
 		this.caseId = caseId;
 	}
 	
-	public String getCaseId() {
+	public int getCaseId() {
 		return caseId;
 	}
 
-	public ShareCase(String caseId, String caseTitle, String caseDiscription, int caseTypeId, String expireDate, int refugeeId) {
+	public ShareCase(int caseId, String caseTitle, String caseDiscription, int caseTypeId, String expireDate, int refugeeId) {
 		this.caseId = caseId;
 		this.caseTitle = caseTitle;
 		this.caseDiscription = caseDiscription;
@@ -45,11 +45,11 @@ public class ShareCase implements Serializable{
 		this.createdDate = createdDate;
 	}
 	
-	public String getId() {
+	public int getId() {
 		return caseId;
 	}
 	
-	public void setId(String id) {
+	public void setId(int id) {
 		this.caseId = id;
 	}
 

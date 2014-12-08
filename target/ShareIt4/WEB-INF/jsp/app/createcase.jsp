@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib prefix="iTag" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="iTag" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -9,20 +10,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <script type="text/javascript">
-/* var aDate = $('.expireDate').datepicker({
-	weekStart: 1,
-    autoclose: true
-}).on("changeDate", function(ev){
-    aDate.hide();
-}).data("datepicker");
- */
-$(document).ready(function () {
-    
-    $('#expireDate').datepicker({
-        format: "dd/mm/yyyy"
-    });  
+	/* var aDate = $('.expireDate').datepicker({
+	 weekStart: 1,
+	 autoclose: true
+	 }).on("changeDate", function(ev){
+	 aDate.hide();
+	 }).data("datepicker");
+	 */
+	$(document).ready(function() {
 
-});
+		$('#expireDate').datepicker({
+			format : "dd/mm/yyyy"
+		});
+
+	});
 </script>
 </head>
 <body>
@@ -32,7 +33,7 @@ $(document).ready(function () {
 
 	<div class="container" style="width: 50%;">
 		<div class="panel panel-info">
-			<div class="panel-heading">Bootstrap: Basic Form</div>
+			<div class="panel-heading">Add a new case</div>
 			<div class="panel-body">
 
 				<form:form method="POST" action="/ShareIt4/createCase"
@@ -48,14 +49,14 @@ $(document).ready(function () {
 						<div class="form-group">
 							<form:label path="caseDiscription">Case Description :   </form:label>
 							<form:textarea path="caseDiscription" class="form-control"
-								id="caseDiscription" placeholder="Case Description" />
+								id="caseDiscription" style="height:200px;" placeholder="Case Description" />
 						</div>
 
 					</tr>
 					<tr>
 						<div class="form-group">
-							<form:label path="expireDate">Birthday (mm/dd/yyyy) :   </form:label>
-							<form:input id ="expireDate" path="expireDate" />
+							<form:label path="expireDate">Expire Date :   </form:label>
+							<form:input id="expireDate" path="expireDate" class="form-control" style="width:50%"/>
 							<%-- <iTag:input path="expireDate" label="expireDate" placeholder="expireDataa" outerCssClass="date datepicker expireDate" inputWidthClass="col-xs-4" append="true" icon="icon-calendar" readonly="false" required="true"/> --%>
 						</div>
 
@@ -63,15 +64,18 @@ $(document).ready(function () {
 					<tr>
 						<div class="form-group">
 							<form:label path="caseTypeId">Case Types :   </form:label>
-							<form:select path="caseTypeId" items="${caseTypes}" value="9"/>
+							<form:select id="caseTypeId" path="caseTypeId"
+								class="form-control selectpicker">
+								<c:forEach items="${caseTypes}" var="caseType">
+									<option value="${caseType.caseTypeId}">${caseType.caseType}</option>
+								</c:forEach>
+							</form:select>
+
 						</div>
 
 					</tr>
 					<div class="form-group">
-						<div class="checkbox">
-							<label><input type="checkbox"> Remember me</label>
-						</div>
-						<button type="submit" class="btn btn-primary">Login</button>
+						<button type="submit" class="btn btn-primary">Create Case</button>
 					</div>
 				</form:form>
 			</div>

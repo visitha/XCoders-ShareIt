@@ -38,7 +38,7 @@ public class ShareCasesDAOImpl implements ShareCasesDAO {
 			ShareCase shareCase = null;
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
-				shareCase = new ShareCase(rs.getString("sharecase_id"),
+				shareCase = new ShareCase(rs.getInt("sharecase_id"),
 						rs.getString("case_title"),
 						rs.getString("case_description"),
 						rs.getInt("case_type_id"),
@@ -79,7 +79,7 @@ public class ShareCasesDAOImpl implements ShareCasesDAO {
 		         
 		         ShareCase shareCase = new ShareCase();
 					
-		         shareCase.setId((rs.getString("sharecase_id")));
+		         shareCase.setId((rs.getInt("sharecase_id")));
 		         shareCase.setCaseTitle(rs.getString("case_title"));
 		         shareCase.setCaseTypeId(rs.getInt("case_type_id"));
 		         shareCase.setCaseDiscription(rs.getString("case_description"));
@@ -179,7 +179,7 @@ public class ShareCasesDAOImpl implements ShareCasesDAO {
 		      while (rs.next()) {
 		         ShareCase shareCase = new ShareCase();
 					
-		         shareCase.setId((rs.getString("sharecase_id")));
+		         shareCase.setId((rs.getInt("sharecase_id")));
 		         shareCase.setCaseTitle(rs.getString("case_title"));
 		         shareCase.setCaseTypeId(rs.getInt("case_type_id"));
 		         shareCase.setCaseDiscription(rs.getString("case_description"));

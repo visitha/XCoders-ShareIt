@@ -31,12 +31,13 @@
 		</h3>
 		<h3>
 			&thinsp;&thinsp;&thinsp;&thinsp;&thinsp;&thinsp; People who have
-			excess of food can create a "Donate Case" with details of the item
-			he/she has. (Donator can also be a seller, but we selected the word
-			Donator as he will be selling at a lower price than the ordinary
-			sellers, as explained below) Then people who need those donations can
-			contact them and make arrangements to ship the items to his/her
-			location/country.
+			excess of food can create a 'Donate Case' with details of the item
+			he/she has. Then people who need those donations can contact them and
+			make arrangements to ship the items to his/her location/country.
+			Similarly refugees(or people on behalf of them) can add posts about
+			their needs so that Donators can view them and lend a helping hand.
+			For those who have items with intention of selling, they too can
+			publish about their goods so that interested buyers can view them.
 			</h4>
 			</br>
 			<h3>
@@ -71,6 +72,22 @@
 				Search option provided by the application.</h3>
 			</br>
 			<h3>
+				<b>Sellers can login to the system and create a case</b>
+			</h3>
+			<h3>&thinsp;&thinsp;&thinsp;&thinsp;&thinsp;&thinsp;When a
+				seller logs into the system, by default he/she will be shown the
+				cases made by buyers. He/She can also view other cases using the
+				Search option provided by the application.</h3>
+			</br>
+			<h3>
+				<b>Buyers can login to the system and view cases</b>
+			</h3>
+			<h3>&thinsp;&thinsp;&thinsp;&thinsp;&thinsp;&thinsp;When a buyer
+				logs into the system, by default he/she will be shown the cases made
+				by sellers. He/She can also view other cases using the Search option
+				provided by the application.</h3>
+			</br>
+			<h3>
 				<b>Transporters can login to the system and view settled cases
 					in order to provide transportation</b>
 			</h3>
@@ -89,7 +106,8 @@
 				notification system to which users can subscribe and get to know
 				about new things happening at ShareIt as soon as they happen..!</h3>
 			<h3>Give capability do transactions via "ShareIt" application.</h3>
-			<h3>Add Google Map API to display Geo locations of all share cases and users.</h3>
+			<h3>Add Google Map API to display Geo locations of all share
+				cases and users.</h3>
 	</div>
 
 </body>

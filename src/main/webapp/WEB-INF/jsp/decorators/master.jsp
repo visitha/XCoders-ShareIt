@@ -15,7 +15,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Mortality Review System</title>
+<title>ShareIt</title>
 <!-- Don't localize brand name: "Mortality Review System"  -->
 
 <%-- <link rel="shortcut icon" href="${ROOT}/resources/img/favicon.ico">
@@ -73,7 +73,7 @@
 						<!-- Don't localize below brand name: "Mortality Review System"  -->
 						<a class="navbar-brand" style="font-size: 30px;" href="${ROOT}"><img
 							style="width: 45px; height: 45px;" alt=""
-							src="${ROOT}/resources/img/logo2.png" />&nbsp;ShareIt</a>
+							src="" />&nbsp;ShareIt</a>
 					</div>
 				</ul>
 				<ul class="nav navbar-nav navbar-right"
